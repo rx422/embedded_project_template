@@ -42,6 +42,7 @@ typedef enum MOTOR_DIRECTIONS
 	LEFT,
 } motor_dir_t;
 
+
 typedef struct Motor
 {
 	uint8_t motor_id;
