@@ -1,5 +1,9 @@
-#ifndef EEPROM_INC_EEPROM_H_
-#define EEPROM_INC_EEPROM_H_
+#ifndef __EEPROM_INC_EEPROM_H__
+#define __EEPROM_INC_EEPROM_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "stm32g0xx_hal.h"
 #include "i2c.h"
@@ -30,5 +34,9 @@ void Test_Write_Read_24LCxx(
 								const uint8_t *wmsg,
 								uint8_t *rmsg
 							);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* EEPROM_INC_EEPROM_H_ */

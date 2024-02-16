@@ -26,10 +26,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio_usart.h>
 #include "motor.h"
 #include "eeprom.h"
 /* USER CODE END Includes */
@@ -70,46 +70,7 @@ uint8_t needReadUsartInputBuff(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-int _write(int file, char *ptr, int len)
-{
-	(void) file;
 
-	HAL_UART_Transmit(&huart2, (uint8_t*) ptr, len, HAL_MAX_DELAY);
-
-	return len;
-}
-
-int _read(int file, char *ptr, int len)
-{
-	(void) file;
-
-	__HAL_UART_CLEAR_FLAG(&huart2, UART_FLAG_ORE);
-	HAL_UART_Receive(&huart2, (uint8_t*) ptr, len, HAL_MAX_DELAY);
-
-	return len;
-}
-
-// Another method of redirecting input-output flows is presented below.
-/*
-int __io_putchar(int ch)
-{
-	HAL_UART_Transmit(&huart2, (uint8_t*) &ch, 1, HAL_MAX_DELAY);
-
-	return HAL_OK;
-}
-
-int __io_getchar(void)
-{
-	int ch;
-
-	//	__HAL_UART_CLEAR_FLAG(&huart2, UART_FLAG_ORE);
-	__HAL_UART_CLEAR_OREFLAG(&huart2);
-
-	HAL_UART_Receive(&huart2, (uint8_t*) &ch, 1, HAL_MAX_DELAY);
-
-	return ch;
-}
-*/
 /* USER CODE END 0 */
 
 /**
@@ -131,6 +92,7 @@ int main(void)
 	// No buffers will be used for input and output streams.
 	setvbuf(stdin, NULL, _IONBF, 0);
 	setvbuf(stdout, NULL, _IONBF, 0);
+	
 	/* USER CODE END Init */
 
 	/* Configure the system clock */
@@ -145,18 +107,20 @@ int main(void)
 	MX_USART2_UART_Init();
 	MX_I2C1_Init();
 	/* USER CODE BEGIN 2 */
+	stdio_usart_init();
 
+	
 	char output_data_buff[20] = "Data from EEPROM";
-	char input_data_buff[20];
+	char input_data_buff[20] = {0};
 
 	printf("Output: %s\n", output_data_buff);
-	Test_Write_Read_24LCxx(
-					&hi2c1,
-					0xA0,
-					0x0000,
-					(uint8_t*) output_data_buff,
-					(uint8_t*) input_data_buff
-				);
+	// Test_Write_Read_24LCxx(
+	// 				&hi2c1,
+	// 				0xA0,
+	// 				0x0000,
+	// 				(uint8_t*) output_data_buff,
+	// 				(uint8_t*) input_data_buff
+	// 			);
 	printf("Input: %s\n", input_data_buff);
 
 	static motor_t motor;
@@ -166,7 +130,7 @@ int main(void)
 	motor_init(
 			&motor,
 			FIRST_MOTOR_ID,
-			0,
+			0u,
 			MOTOR_A_Pin,
 			MOTOR_B_Pin,
 			MOTOR_A_GPIO_Port
