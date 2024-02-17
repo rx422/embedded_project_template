@@ -65,14 +65,24 @@ void Error_Handler(void);
 #define USART2_TX_GPIO_Port GPIOA
 #define USART2_RX_Pin GPIO_PIN_3
 #define USART2_RX_GPIO_Port GPIOA
-#define MOTOR_A_Pin GPIO_PIN_5
-#define MOTOR_A_GPIO_Port GPIOA
-#define MOTOR_B_Pin GPIO_PIN_6
-#define MOTOR_B_GPIO_Port GPIOA
+#define JOSTICK_Y_Pin GPIO_PIN_4
+#define JOSTICK_Y_GPIO_Port GPIOA
+#define MOTOR_A_Pin GPIO_PIN_0
+#define MOTOR_A_GPIO_Port GPIOB
+#define JOSTICK_X_Pin GPIO_PIN_1
+#define JOSTICK_X_GPIO_Port GPIOB
+#define TEMPERATURE_Pin GPIO_PIN_2
+#define TEMPERATURE_GPIO_Port GPIOB
+#define JOSTICK_SW_Pin GPIO_PIN_14
+#define JOSTICK_SW_GPIO_Port GPIOB
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
+#define SERVO_Pin GPIO_PIN_9
+#define SERVO_GPIO_Port GPIOC
+#define MOTOR_B_Pin GPIO_PIN_3
+#define MOTOR_B_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
