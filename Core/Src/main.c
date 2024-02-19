@@ -135,6 +135,8 @@ int main(void)
 	char output_data_buff[20] = "Data from EEPROM";
 	char input_data_buff[20] = {0};
 
+//	printf("Some floating point data: %f", 2.33);
+
 	printf("Output: %s\n", output_data_buff);
 	// Test_Write_Read_24LCxx(
 	// 				&hi2c1,
