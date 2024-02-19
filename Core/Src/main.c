@@ -33,7 +33,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio_usart.h>
+#include "stdio_usart.h"
 #include "motor.h"
 #include "eeprom.h"
 /* USER CODE END Includes */
@@ -161,21 +161,12 @@ int main(void)
 
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
 
-	TIM_OC_InitTypeDef sConfigOC = {0};
-
-	sConfigOC.OCMode = TIM_OCMODE_PWM1;
-	sConfigOC.Pulse = 500;
-	sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
-	sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 		while (1)
 		{
-			static uint8_t hystreresis = 1;
-
 			// static uint32_t next_show_time = 0;
 			static uint32_t read_jostick_time = 0;
 			static uint32_t set_angle_time = 0;
